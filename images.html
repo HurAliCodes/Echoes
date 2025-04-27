@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Letter Images</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 2.5rem;
+    }
+
+    .letter-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .letter-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      width: 120px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .letter-box:hover {
+      transform: scale(1.05);
+    }
+
+    .letter-box img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-top: 10px;
+    }
+
+    .letter-box p {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0;
+      color: white;
+    }
+
+    .btn:hover{
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+  <button class="btn" style="margin-bottom: 40px; font-size: 20px;"><i class="fa-solid fa-backward"></i></button>
+  <div id="output" class="letter-container"></div>
+
+  <script>
+    const text = localStorage.getItem("textToConvert") || "";
+    const outputDiv = document.getElementById("output");
+
+    // Sample image URLs for each letter A-Z (index 0 = 'A', 25 = 'Z')
+    const imageUrls = [
+      "images/A.png",
+      "images/B.png",
+      "images/C.png",
+      "images/D.png",
+      "images/E.png",
+      "images/F.png",
+      "images/G.png",
+      "images/H.png",
+      "images/I.png",
+      "images/J.png",
+      "images/K.png",
+      "images/L.png",
+      "images/M.png",
+      "images/N.png",
+      "images/O.png",
+      "images/P.png",
+      "images/Q.png",
+      "images/R.png",
+      "images/S.png",
+      "images/T.png",
+      "images/U.png",
+      "images/V.png",
+      "images/W.png",
+      "images/X.png",
+      "images/Y.png",
+      "images/Z.png"
+    ];
+
+    // Convert text to uppercase and split letters
+    const letters = text.toUpperCase().split("");
+    const btn = document.querySelector('.btn')
+
+    btn.addEventListener('click',()=>{
+      window.history.back()
+    })
+
+    letters.forEach(letter => {
+    if (letter >= 'A' && letter <= 'Z') {
+        const index = letter.charCodeAt(0) - 65;
+
+        const imgUrl = imageUrls[index];
+        const box = document.createElement("div");
+        box.className = "letter-box";
+
+        const img = document.createElement("img");
+        img.src = imgUrl;
+        img.alt = letter;
+
+        const caption = document.createElement("p");
+        caption.textContent = letter;
+
+        box.appendChild(caption);
+        box.appendChild(img);
+        outputDiv.appendChild(box);
+
+    }
+    else if (letter == ' ') {
+        const spaceDiv = document.createElement("div");
+        spaceDiv.style.flexBasis = "100%"; // Ensures space between sets of letters
+        outputDiv.appendChild(spaceDiv);
+    }
+    });
+
+    // Optional: Clear storage after use
+    localStorage.removeItem("textToConvert");
+  </script>
+</body>
+</html>

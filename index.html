@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echoes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body class="light-theme">
+    <div class="container">
+        <div class="video-section">
+            <div class="status" id="status">Loading model...</div>
+            <div class="character"> - </div>
+            <div class="video-container">
+                <video id="input_video" autoplay muted playsinline></video>
+                <canvas id="output_canvas"></canvas>
+            </div>
+        </div>
+        
+        <div class="controls-section">
+            <div class="control-panel">
+                <button id="startBtn" class="btn">Start Recognition</button>
+                <button id="imageBtn" onclick="goToImages()" class="btn">Convert to Images <i class="fa-solid fa-image"></i></button>
+                <textarea id="outputText" class="output-text" placeholder="Recognized text will appear here..."></textarea>
+            </div>
+
+            <div class="control-panel">
+                <h3>Control panel</h3>
+                <div class="features">
+                    <button id="speechToTextBtn" class="btn"><i class="fa-solid fa-microphone-lines"></i></button>
+                    <button id="textToSpeechBtn" class="btn"><i class="fa-solid fa-volume-high"></i></button>
+                    <button id="clearBtn" class="btn"><i class="fa-solid fa-trash"></i></button>
+                    <button id="copyBtn" class="btn"><i class="fa-solid fa-copy"></i></button>
+                    <button id="toggleMeshBtn" class="btn success"><i class="fa-solid fa-eye-slash"></i></button>
+                    <button id="toggleTheme" class="btn"><i class="fa-solid fa-sun"></i></button>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="main.js"></script>
+    <script>
+        window.addEventListener("load", () => {
+            localStorage.removeItem("lastPrediction");
+        });
+        function goToImages() {
+            const input = document.getElementById("outputText").value;
+            localStorage.setItem("textToConvert", input);
+            window.location.href = "images.html";
+        }
+    </script>
+    
+</body>
+</html>

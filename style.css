@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --primary: #4a90e2;
+    --secondary: #2c3e50;
+    --success: #2ecc71;
+    --background: #1e1e2f;
+    --text: #ecf0f1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100vh;
+    min-width: 320px;
+}
+
+.video-section {
+    position: relative;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    width: 60%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+video, canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+.character {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+    font-family: 'Poppins';
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.controls-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+}
+
+.control-panel {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    text-align: center;
+}
+
+#startBtn.btn{
+    font-size: 20px;
+}
+
+#startBtn.btn:hover{
+    background: #27ae60;
+}
+
+.btn:has(.fa-image){
+    font-size: 20px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    background: #357abd;
+}
+
+.btn.success {
+    background: var(--success);
+}
+
+.btn.success:hover {
+    background: #27ae60;
+}
+
+.output-text {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 8px;
+    min-height: 150px;
+    color: var(--text);
+    font-size: 24px;
+    line-height: 1.5;
+    resize: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+.status {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    z-index: 10;
+}
+
+.del{
+    background-color: red !important;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+/* Responsive Design */
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .video-section {
+        width: 100%;
+        height: auto;
+        min-height: 300px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .video-container {
+        height: 300px;
+    }
+
+    .character {
+        top: calc(100% - 15px);
+        transform: translateY(-100%);
+        width: 60px;
+        height: 60px;
+        font-size: 36px;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+    }
+
+    .controls-section {
+        width: 100%;
+        flex: none;
+    }
+
+    .control-panel {
+        padding: 15px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .output-text {
+        font-size: 16px;
+        min-height: 120px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .output-text {
+        font-size: 14px;
+    }
+}
+
+body.light-theme {
+    --background: #f4f4f4;
+    --text: #1e1e2f;
+    --primary: #007BFF;
+    --success: #28a745;
+}
+
+body.light-theme .control-panel {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+body.light-theme .video-section {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .status{
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+body.light-theme .output-text{
+    background-color: rgba(237, 237, 237, 0.8);
+}
